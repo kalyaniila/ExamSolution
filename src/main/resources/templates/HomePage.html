@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Exam Demo Home Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    
+   	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+   
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+	    	 $('#startDate').datepicker({ dateFormat: 'dd/mm/yyyy',autoclose:true});
+	    	 $('#endDate').datepicker({	dateFormat: 'dd/mm/yyyy',autoclose:true	});  	
+    </script>
+</head>
+
+<body>
+<form action="#" th:action="@{/submitdates}" th:object="${dates}" method="post"> 
+<h1>Hello !</h1>
+<p>Welcome to <span th:text="${appName}">Our App</span></p>
+
+
+    <div class="container my-5">
+        <h3> Provide dates</h3>
+        <div class="card">
+            <div class="card-body">
+                <div class="col-md-2"> 
+                   
+                        <div class="row">
+                             <label for="startDate" class="col-form-label">Start Date</label> 
+                            <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+							  
+							    <input onkeydown="return false;" type="text" class="form-control" th:field="*{startDate}" id="startDate" placeholder="startDate">
+							   
+							    <div class="input-group-addon">
+							        <span class="glyphicon glyphicon-th"></span>
+							    </div> 
+							    
+							</div><span th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}" class="text-danger" ></span>
+							<label for="endDate" class="col-form-label">End Date</label> 
+                            <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                
+                                <input onkeydown="return false;" type="text" class="form-control" th:field="*{endDate}" id="endDate" placeholder="endDate">
+                                <span th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}" class="text-danger"></span>
+                                <div class="input-group-addon">
+							        <span class="glyphicon glyphicon-th"></span>
+							    </div>
+							   
+
+                            </div>
+                             <div class="py-5"></div>
+                             <div class="col-md-6">
+                                <input type="submit" class="btn btn-primary" value="Find Difference">
+                            </div>
+                            
+
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    </form> 
+</body>
+
+</html>
